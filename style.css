@@ -50,6 +50,8 @@ button {
   height: 30px;
   border-radius: 50px;
   border: none;
+  margin-top: 10px;
+  
 }
 button:hover {
   transform: scale(1.05);
@@ -73,6 +75,36 @@ th {
   overflow-wrap: break-word;
   white-space: normal;
 }
-tbody{
-    
+
+#cher-trie-box{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 50%;
+}
+#cherch-btn{
+    display: block;
+    margin: 0 auto;
+}
+#trie-title{
+
+}
+#trie-box{
+    display: flex;
+    flex-direction: column;
+}
+select{
+    width: 220%;
+    height: 25px;
+    margin: 5px;
+    border: 2px solid black;
+    background-color: #111;
+    color: #fff;
+}
+select:focus{
+    background: #6b5555;
+}
+
+#cherch-input{
+    width: 100%;
+    margin-bottom: 5px;
 }
