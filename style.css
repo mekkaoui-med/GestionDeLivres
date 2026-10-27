@@ -85,9 +85,7 @@ th {
     display: block;
     margin: 0 auto;
 }
-#trie-title{
 
-}
 #trie-box{
     display: flex;
     flex-direction: column;
