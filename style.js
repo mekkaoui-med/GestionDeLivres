@@ -6,9 +6,9 @@ if (!localStorage.getItem("books")) {
 
 const tableBody = document.getElementById("books-table-body");
 
-const LocalBooks = JSON.parse(localStorage.getItem("books"));
-
 function desplayBooks() {
+  const LocalBooks = JSON.parse(localStorage.getItem("books"));
+
   tableBody.innerHTML = "";
 
   LocalBooks.forEach(function (book) {
@@ -37,6 +37,8 @@ const statuBook = document.getElementById("statu");
 const button = document.getElementById("ajout-btn");
 
 function validateName(name) {
+  const LocalBooks = JSON.parse(localStorage.getItem("books"));
+
   const patternRegix = /^[\p{L}\p{N}][\p{L}\p{N}\s:'’,.!?-]{1,99}$/u;
   if (!patternRegix.test(name.trim())) {
     return false;
@@ -52,15 +54,17 @@ function validateName(name) {
 }
 
 function ajouterBooks() {
-  const name = bookName.title.trim();
+  const name = bookName.value.trim();
   if (!validateName(name)) {
     console.log("Invalid title or duplicate book");
     return;
   }
+  const LocalBooks = JSON.parse(localStorage.getItem("books"));
+
   const newBook = {
     id:
       LocalBooks.length > 0
-        ? Math.max(LocalBooks[LocalBooks.length - 1].id) + 1
+        ? Math.max(...LocalBooks.map((book) => book.id)) + 1
         : 1,
     title: name,
     author: autherName.value.trim().toLocaleLowerCase(),
@@ -77,5 +81,4 @@ function ajouterBooks() {
 
 button.addEventListener("click", function () {
   ajouterBooks();
-  desplayBooks()
 });
