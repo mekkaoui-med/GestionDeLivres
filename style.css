@@ -81,10 +81,10 @@ th {
     /* justify-content: space-between; */
     gap: 50%;
 }
-#cherch-btn{
+/* #cherch-btn{
     display: block;
     margin: 0 auto;
-}
+} */
 
 #trie-box{
     display: flex;
@@ -104,5 +104,13 @@ select:focus{
 
 #cherch-input{
     width: 100%;
+
     margin-bottom: 5px;
+}
+#btns-cherch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 2px;
 }
