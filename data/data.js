@@ -40,7 +40,7 @@ export const books = [
     title: "Le Alchimiste",
     author: "Paulo Coelho",
     year: 1988,
-    genre: "Roman",
+    genre: "`Roman`",
     description: "Un jeune berger part à la recherche de son trésor personnel.",
     status: "to-read"
   },
