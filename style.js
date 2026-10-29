@@ -21,6 +21,7 @@ function desplayBooks() {
         <th>${book.genre}</th>
         <th>${book.description}</th>
         <th>${book.status}</th>
+    
         `;
     tableBody.appendChild(row);
   });
@@ -33,6 +34,7 @@ const yearBook = document.getElementById("year");
 const bookDescription = document.getElementById("description");
 const genreBook = document.getElementById("genre");
 const statuBook = document.getElementById("statu");
+const errurMessage = document.getElementById("ajout-errur");
 
 const button = document.getElementById("ajout-btn");
 
@@ -55,9 +57,13 @@ function validateName(name) {
 
 function ajouterBooks() {
   const name = bookName.value.trim();
-  if (!validateName(name)) {
-    console.log("Invalid title or duplicate book");
+  const author = autherName.value.trim();
+  if (!validateName(name) || !validateName(author)) {
+    errurMessage.classList.remove("hidden");
+    errurMessage.textContent = "the title or the author name is invalid";
     return;
+  } else {
+    errurMessage.classList.add("hidden");
   }
   const LocalBooks = JSON.parse(localStorage.getItem("books"));
 
@@ -78,6 +84,80 @@ function ajouterBooks() {
 
   desplayBooks();
 }
+
+const inputCherch = document.getElementById("cherch-input");
+const nameCherchBtn = document.getElementById("cherch-btn-name");
+const authorCherchBtn = document.getElementById("cherch-btn-author");
+
+function cherchByName() {
+  const LocalBooks = JSON.parse(localStorage.getItem("books"));
+  const serchText = inputCherch.value.trim().toLowerCase();
+  const result = LocalBooks.filter(function (book) {
+    return book.title.toLowerCase().includes(serchText);
+  });
+  return result;
+}
+
+function cherchByAuthor() {
+  const LocalBooks = JSON.parse(localStorage.getItem("books"));
+  const serchText = inputCherch.value.trim().toLowerCase();
+  const result = LocalBooks.filter(function (book) {
+    return book.author.toLowerCase().includes(serchText);
+  });
+  return result;
+}
+
+const cherchErur = document.getElementById("cherch-erur");
+const tableCherch = document.getElementById("table-cherch");
+const tbodyCherch = document.getElementById("tbady-cherch");
+
+nameCherchBtn.addEventListener("click", function () {
+  const result = cherchByName();
+
+  if (result.length == 0) {
+    cherchErur.classList.remove("hidden");
+    cherchErur.textContent = "the name is invalable";
+  } else {
+    tableCherch.classList.remove("hidden");
+    // const row = document.createElement("tr")
+    // row.innerHTML = `
+    // <th>${result[0].id}</th>
+    // <th>${result[0].title}</th>
+    // <th>${result[0].author}</th>
+    // <th>${result[0].year}</th>
+    // <th>${result[0].genre}</th>
+    // <th>${result[0].description}</th>
+    // <th>${result[0].status}</th>
+    // `;
+    // tbodyCherch.appendChild(row)
+    createRowTable(result);
+  }
+});
+function createRowTable(result) {
+  const row = document.createElement("tr");
+
+  row.innerHTML = `
+    <th>${result[0].id}</th>
+    <th>${result[0].title}</th>
+    <th>${result[0].author}</th>
+    <th>${result[0].year}</th>
+    <th>${result[0].genre}</th>
+    <th>${result[0].description}</th>
+    <th>${result[0].status}</th>
+  `;
+
+  tbodyCherch.appendChild(row);
+}
+authorCherchBtn.addEventListener("click", function () {
+  const result = cherchByAuthor();
+  if (result.length == 0) {
+    cherchErur.classList.remove("hidden");
+    cherchErur.textContent = "the author name is invalable";
+  } else {
+    tableCherch.classList.remove("hidden");
+    createRowTable(result);
+  }
+});
 
 button.addEventListener("click", function () {
   ajouterBooks();
