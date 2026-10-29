@@ -51,15 +51,19 @@ button {
   border-radius: 50px;
   border: none;
   margin-top: 10px;
-  
+  transition: 0.5s;
 }
 button:hover {
   transform: scale(1.05);
+  letter-spacing: 1px;
 }
 button:focus {
   background-color: rgb(56, 46, 46);
   color: #fff;
 }
+/* #cherch-title{
+    text-align: center;
+} */
 table {
   margin: 20px;
   width: 100%;
@@ -74,6 +78,14 @@ th {
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+}
+#table-title{
+    text-align: center;
+
+}
+#table-cherch{
+    width: 100%;
+    table-layout: fixed;
 }
 
 #cher-trie-box{
@@ -113,4 +125,20 @@ select:focus{
     align-items: center;
     gap: 10px;
     padding: 2px;
+}
+#ajout-errur{
+    color: red;
+    padding: 5px;
+    letter-spacing: 2px;
+    text-align: center;
+    
+}
+#cherch-erur{
+    color: red;
+    padding: 5px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.hidden{
+    display: none;
 }

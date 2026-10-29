@@ -28,8 +28,8 @@
             required
             placeholder="Qui a écrit  ?"
           />
-          <input type="number" id="year" required placeholder="Ex:1993" />
-          <input type="text" id="genre" required placeholder='Ex:"Roman" ..' />
+          <input type="number" id="year" placeholder="Ex:1993" />
+          <input type="text" id="genre" placeholder='Ex:"Roman" ..' />
           <input
             type="text"
             name=""
@@ -38,23 +38,23 @@
             placeholder="écrit un Description"
           />
           <input type="text" placeholder="Reading..." id="statu" required />
-          <button id="ajout-btn">Ajoute</button>
+          <button id="ajout-btn" type="submit">Ajoute</button>
         </div>
-        <h2></h2>
+        <p id="ajout-errur" class="hidden"></p>
       </div>
       <div id="cher-trie-box">
         <div id="cherch-box">
-          <h2>Rechercher Un Livre</h2>
+          <h2 id="cherch-title">Rechercher Un Livre</h2>
           <input
             type="text"
-            id="cherch-input"
             id="cherch-input"
             placeholder="Entre le nome de live ou author"
           />
           <div id="btns-cherch">
-            <button id="cherch-btn"> By Name</button>
-            <button>By Author</button>
+            <button id="cherch-btn-name">By Name</button>
+            <button id="cherch-btn-author">By Author</button>
           </div>
+          <p id="cherch-erur" class="hidden"></p>
         </div>
 
         <div id="trie-box">
@@ -67,6 +67,29 @@
           </select>
         </div>
       </div>
+      
+       <div class="hidden" id="table-cherch">
+            <table id="table-cherch">
+              <thead>
+                <tr id="tableRow1">
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Year</th>
+                  <th>Gender</th>
+                  <th>Description</th>
+                  <th>status</th>
+                </tr>
+              </thead>
+              <tbody id="tbady-cherch">
+                
+              </tbody>
+            </table>
+          </div>
+      <div>
+        <p id="cherch-errur" class="hidden">the result is not fond</p>
+      </div>
+      <h2 id="table-title">Votre Bibliothèque</h2>
       <div class="outputs">
         <table id="bookTable">
           <thead>
@@ -80,7 +103,9 @@
               <th>status</th>
             </tr>
           </thead>
-          <tbody id="books-table-body"></tbody>
+          <tbody id="books-table-body">
+            <tr></tr>
+          </tbody>
         </table>
       </div>
     </div>
