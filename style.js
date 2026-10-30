@@ -114,11 +114,12 @@ const tbodyCherch = document.getElementById("tbady-cherch");
 nameCherchBtn.addEventListener("click", function () {
   const result = cherchByName();
 
-  if (result.length == 0) {
+  if (result.length == 0 || nameCherchBtn.value === "") {
     cherchErur.classList.remove("hidden");
     cherchErur.textContent = "the name is invalable";
   } else {
     tableCherch.classList.remove("hidden");
+    cherchErur.classList.add("hidden")
     // const row = document.createElement("tr")
     // row.innerHTML = `
     // <th>${result[0].id}</th>
@@ -133,24 +134,10 @@ nameCherchBtn.addEventListener("click", function () {
     createRowTable(result);
   }
 });
-function createRowTable(result) {
-  const row = document.createElement("tr");
 
-  row.innerHTML = `
-    <th>${result[0].id}</th>
-    <th>${result[0].title}</th>
-    <th>${result[0].author}</th>
-    <th>${result[0].year}</th>
-    <th>${result[0].genre}</th>
-    <th>${result[0].description}</th>
-    <th>${result[0].status}</th>
-  `;
-
-  tbodyCherch.appendChild(row);
-}
 authorCherchBtn.addEventListener("click", function () {
   const result = cherchByAuthor();
-  if (result.length == 0) {
+  if (result.length == 0 || authorCherchBtn.value == "") {
     cherchErur.classList.remove("hidden");
     cherchErur.textContent = "the author name is invalable";
   } else {
@@ -158,6 +145,66 @@ authorCherchBtn.addEventListener("click", function () {
     createRowTable(result);
   }
 });
+
+
+const trieOption = document.getElementById("trie-option")
+
+function trieByChois(){
+    const choisDeTrie = trieOption.value;
+    const LocalBooks = JSON.parse(localStorage.getItem("books"))
+    const result = "";
+    switch(choisDeTrie){
+        case "Titre":
+            result = LocalBooks.sort((a,b) => a.title.localeCompare(b.title))
+            return result;
+            break;
+        case "Author":
+            result = LocalBooks.sort((a,b) => a.author.localeCompare(b.author))
+            return result;
+            break;
+        case "Année":
+            result = LocalBooks.sort((a,b) => a.year - b.year)
+            return result;
+            break;
+        default:
+            result = "";
+
+    }
+    // if(choisDeTrie === "Titre"){
+    //     result = result.sort((a,b) => a.title.localeCompare(b.title));
+    //     return result;
+    // }
+}
+const trieErur = document.getElementById("trie-errur")
+
+trieOption.addEventListener("change", function(){
+    const result = trieByChois();
+    if(result == ""){
+        trieErur.classList.remove("hidden");
+        trieErur.textContent = "Choiser un genre";
+    }else{
+        trieErur.classList.add("hidde")
+    }
+})
+
+
+function createRowTable(i) {
+  const row = document.createElement("tr");
+  tbodyCherch.textContent = "";
+
+  row.innerHTML = `
+    <th>${i[0].id}</th>
+    <th>${i[0].title}</th>
+    <th>${i[0].author}</th>
+    <th>${i[0].year}</th>
+    <th>${i[0].genre}</th>
+    <th>${i[0].description}</th>
+    <th>${i[0].status}</th>
+  `;
+
+  tbodyCherch.appendChild(row);
+}
+
 
 button.addEventListener("click", function () {
   ajouterBooks();

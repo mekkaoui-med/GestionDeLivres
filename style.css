@@ -93,6 +93,10 @@ th {
     /* justify-content: space-between; */
     gap: 50%;
 }
+#result-title{
+    text-align: center;
+    text-decoration: none;
+}
 /* #cherch-btn{
     display: block;
     margin: 0 auto;
@@ -141,4 +145,8 @@ select:focus{
 }
 .hidden{
     display: none;
+}
+#trie-errur{
+    color: red;
+    letter-spacing: 1px;
 }
